@@ -1,0 +1,151 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+	<!-- <h3 style="font-size: large"><b>All Listings:</b></h3> -->
+	<!-- <form method="GET" action="/listings/new">
+        <button>Create New Listing</button>
+    </form> -->
+
+	<div id="filters">
+		<div class="filter">
+			<a class="icon" href="/listings/category/Trending"
+				><div><i class="fa-solid fa-fire-flame-curved"></i></div>
+				Trending
+			</a>
+		</div>
+		<div class="filter">
+			<a class="icon" href="/listings/category/Iconic City"
+				><div><i class="fa-solid fa-city"></i></div>
+				Iconic City
+			</a>
+		</div>
+		<div class="filter">
+			<a class="icon" href="/listings/category/Mountain"
+				><div><i class="fa-solid fa-mountain-city"></i></div>
+				Mountain</a
+			>
+		</div>
+		<div class="filter">
+			<a class="icon" href="/listings/category/Castle"
+				><div><i class="fa-brands fa-fort-awesome"></i></div>
+				Castle</a
+			>
+		</div>
+		<div class="filter">
+			<a class="icon" href="/listings/category/Pool"
+				><div><i class="fa-solid fa-umbrella-beach"></i></div>
+				Pool</a
+			>
+		</div>
+		<div class="filter">
+			<a class="icon" href="/listings/category/Camping"
+				><div><i class="fa-solid fa-campground"></i></div>
+				Camping</a
+			>
+		</div>
+		<div class="filter">
+			<a class="icon" href="/listings/category/Farm"
+				><div><i class="fa-solid fa-wheat-awn"></i></div>
+				Farm</a
+			>
+		</div>
+		<div class="filter">
+			<a class="icon" href="/listings/category/Arctic"
+				><div><i class="fa-solid fa-snowflake"></i></div>
+				Arctic</a
+			>
+		</div>
+		<div class="filter">
+			<a class="icon" href="/listings/category/Spa"
+				><div><i class="fa-solid fa-spa"></i></div>
+				Spa</a
+			>
+		</div>
+		<div class="filter">
+			<a class="icon" href="/listings/category/Adventure"
+				><div><i class="fa-solid fa-hiking"></i></div>
+				Adventure</a
+			>
+		</div>
+		<div class="filter">
+			<a class="icon" href="/listings/category/Dining"
+				><div><i class="fa-solid fa-utensils"></i></div>
+				Dining</a
+			>
+		</div>
+		<div class="filter">
+			<a class="icon" href="/listings/category/Meeting"
+				><div><i class="fa-solid fa-handshake"></i></div>
+				Meeting</a
+			>
+		</div>
+
+		<div class="tax-toggle">
+			<div class="form-check-reverse form-switch">
+				<input
+					class="form-check-input"
+					type="checkbox"
+					role="switch"
+					id="flexSwitchCheckDefault" />
+				<label class="form-check-label" for="flexSwitchCheckDefault"
+					>Display Total After Taxes</label
+				>
+			</div>
+		</div>
+	</div>
+	<br />
+
+	<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+		<% for(let listing of allListings){ %>
+		<a href="/listings/<%= listing._id %>" class="listing-link">
+			<div class="card col listing-card">
+				<img
+					src="<%= listing.image.url %>"
+					class="card-img-top"
+					alt="listing_image"
+					style="height: 20rem" />
+				<div class="card-img-overlay"></div>
+			</div>
+
+			<div class="card-body shadow-lg">
+				<p
+					class="card-text"
+					style="
+						font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman',
+							serif;
+						color: black;
+						font-size: larger;
+					">
+					&nbsp;&nbsp;Location:<b style="color: #824750">
+						<%= listing.title %></b
+					>
+					<br />
+					&nbsp;&nbsp;Price:
+					<b style="color: #824750"
+						>&#8377; <%= listing.price.toLocaleString("en-IN") %> / night</b
+					>
+					<b class="tax-info">&nbsp; + 12% GST</b>
+				</p>
+			</div>
+			<br />
+			<br />
+			<br />
+		</a>
+
+		<% } %>
+	</div>
+
+	<script>
+		let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+		taxSwitch.addEventListener("click", () => {
+			let taxInfo = document.getElementsByClassName("tax-info");
+			for (info of taxInfo) {
+				if (info.style.display != "inline") {
+					info.style.display = "inline";
+				} else {
+					info.style.display = "none";
+				}
+			}
+		});
+	</script>
+</body>

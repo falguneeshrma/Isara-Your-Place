@@ -1,0 +1,113 @@
+<style>
+	.btn-search {
+		background-color: #824750;
+		color: white;
+		border-radius: 2.5px;
+		padding: 0.6rem;
+		margin-left: 0.3rem;
+	}
+
+	.btn-search:hover {
+		background-color: #824750;
+		color: white;
+	}
+
+	input::placeholder {
+		font-size: 1.08rem;
+		font-family: Georgia, "Times New Roman", Times, serif;
+	}
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+	<div class="container-fluid ms-auto">
+		<a class="navbar-brand" href="/listings">
+			<h1 class="brand"><i class="fa-solid fa-map-location-dot"></i> Isara</h1>
+		</a>
+		<button
+			class="navbar-toggler"
+			type="button"
+			data-bs-toggle="collapse"
+			data-bs-target="#navbarNavAltMarkup"
+			aria-controls="navbarNavAltMarkup"
+			aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-link deals" href="/listings"><i>Explore</i></a>
+			</div>
+			<button class="navbar-nav nav-link offer"><i>Exclusive Deals</i></button>
+			<div
+				class="messageBox"
+				style="
+					display: none;
+					border: 2px solid #000;
+					padding: 15px 100px 15px 50px;
+					background-color: #f0f0f0;
+					margin-top: 15px;
+					margin-left: 50px;
+				">
+				Great deals are just around the corner! &#x1F389;
+				<br />
+				Stay tuned and be the first to grab exciting offers coming your
+				way!&#x2764;&#xFE0F;
+				<br />
+				Check back soon for exclusive discounts and promotions! &#x2B50;
+			</div>
+
+			<!-- search button -->
+
+			<div class="navbar-nav nav-link" style="margin: 2.5rem 0 0 5rem">
+				<form action="/listings/search" method="GET" class="d-flex">
+					<!-- Search Input -->
+					<div class="input-group">
+						<input
+							type="search"
+							class="form-control form-control-sm"
+							name="query"
+							placeholder="Search or Explore" />
+						<!-- Submit Button -->
+						<button class="btn btn-sm btn-search" type="submit">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</div>
+				</form>
+			</div>
+
+			<div class="navbar-nav ms-auto">
+				<a class="nav-link deals" href="/listings/new"
+					><i>Isara your place</i></a
+				>
+				<% if(!currUser) { %>
+				<a class="nav-link deals" href="/signup"><b>Sign Up</b></a>
+				<a class="nav-link deals" href="/login"><b>Log In</b></a>
+				<% } %> <% if(currUser) { %>
+				<a class="nav-link deals" href="/logout"><b>Log Out</b></a>
+				<% } %>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<script>
+	window.addEventListener("DOMContentLoaded", function () {
+		let offer = document.querySelector(".offer");
+		let deals = document.querySelectorAll(".deals");
+		let messageBox = document.querySelector(".messageBox");
+
+		offer.addEventListener("click", () => {
+			messageBox.style.display = "block";
+			deals.forEach((deal) => {
+				deal.style.display = "none";
+			});
+
+			setTimeout(() => {
+				messageBox.style.display = "none";
+				deals.forEach((deal) => {
+					deal.style.display = "block";
+				});
+			}, 5000);
+		});
+	});
+</script>

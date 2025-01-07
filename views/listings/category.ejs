@@ -1,0 +1,44 @@
+<% layout("/layouts/boilerplate") %>
+<link rel="stylesheet" href="\css\style.css" />
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%= category %> Listings</title>
+	</head>
+	<body>
+		<br />
+
+		<h2 style="font-family: 'Times New Roman', Times, serif">
+			<%= category %> Locations:
+		</h2>
+
+		<br />
+		<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+			<% if (listings.length === 0) { %>
+			<p>No listings found in this category.</p>
+			<% } else { %> <% listings.forEach(function(listing) { %>
+			<a href="/listings/<%= listing._id %>" class="listing-link">
+				<div class="card col listing-card">
+					<img
+						src="<%= listing.image.url %>"
+						class="card-img-top"
+						alt="listing_image"
+						style="height: 20rem" />
+					<div class="card-img-overlay"></div>
+				</div>
+
+				<div class="card-body">
+					<p class="card-text">
+						<b><%= listing.title %></b> <br />
+						&#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+						<b class="tax-info">&nbsp; + 12% GST</b>
+					</p>
+				</div>
+				<br />
+			</a>
+			<% }); %> <% } %>
+		</div>
+	</body>
+</html>
