@@ -1,11 +1,9 @@
 # Isara-Your_Place
 <br/>
 
-![Isara - Your Place](file:///C:/Users/falgu/Pictures/Screenshots/Isara-Your-Place.png)
-
 # Live Project : GitHub Page link
 <br/>
-https://falguneeshrma.github.io/Isara-Your-Place/
+(https://isara-your-place.onrender.com/listings)
 
 # Description
 <br/>
